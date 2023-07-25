@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="Description" content="Web frontend for youtube-dl">
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+  <title>TES LAMPU</title>
+</head>
+
+<body>
+  <button data-kode="TES1" id="button_onoff"></button>
+  <div class="light"></div>
+  <div class="row">
+    <div class="col-2 text-white"><h4>API Data Lampu : </h4></div>
+    <div class="col-10 text-white"><h4>http://172.20.140.98:4646/get-data-lampu-TES1</h4></div>
+  </div>
+  <script src="{{ url_for('static', filename='jquery.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+  <script>
+
+    function init_lampu(kode_lampu){
+      $.ajax({
+        url: "/onoff-init-"+kode_lampu,
+        method: "GET",
+        success:function(data){
+          if(data.status_lampu == '1'){
+            $("#button_onoff").html("Turn Off")
+            $("#button_onoff").val("0")
+            $("#button_onoff").attr("class", "btn btn-danger btn-lg")
+            $(".light").css('display', 'block')
+          }else{
+            $("#button_onoff").html("Turn On")
+            $("#button_onoff").val("1")
+            $("#button_onoff").attr("class", "btn btn-success btn-lg")
+            $(".light").css('display', 'none')
+          }
+        }
+      })
+    }
+
+    $(document).ready(function(){
+      init_lampu('TES1')
+    })
+
+    $(document).on("click", "#button_onoff", function(){
+      value = $(this).val()
+      kode_lampu = $(this).data('kode')
+      $.ajax({
+        url: "/onoff",
+        method: "POST",
+        data: {value:value, kode_lampu:kode_lampu},
+        success:function(data){
+          if(data.status_lampu == '1'){
+            $("#button_onoff").html("Turn Off")
+            $("#button_onoff").val("0")
+            $("#button_onoff").attr("class", "btn btn-danger btn-lg")
+            $(".light").css('display', 'block')
+          }else{
+            $("#button_onoff").html("Turn On")
+            $("#button_onoff").val("1")
+            $("#button_onoff").attr("class", "btn btn-success btn-lg")
+            $(".light").css('display', 'none')
+          }
+        }
+      })
+    })
+
+  </script>
+</body>
+
+</html>

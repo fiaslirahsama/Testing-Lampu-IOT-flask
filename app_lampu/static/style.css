@@ -1,0 +1,85 @@
+* {
+	padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+}
+body {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	position: relative;
+	background-image: url("./lampu.jpg");
+	background-size: cover;
+	background-position: center center;
+}
+
+.light {
+	position: absolute;
+	display: block;
+	width: 0;
+	height: 0;
+	border-radius: 50%;
+	background: transparent;
+	position: absolute;
+	top: 42%;
+	left: 39%;
+	transform: translate(-50%, -50%);
+	box-shadow: 160px 160px 100px 160px #ffffff;
+}
+
+@media (max-width: 1250px) {
+	.light {
+		left: 38%;
+	}
+}
+
+@media (max-width: 1150px) {
+	.light {
+		box-shadow: 150px 150px 100px 150px #ffffff;
+	}
+}
+
+@media (max-width: 1050px) {
+	.light {
+		box-shadow: 120px 120px 100px 120px #ffffff;
+	}
+}
+
+@media (max-width: 850px) {
+	.light {
+		box-shadow: 100px 100px 90px 100px #ffffff;
+	}
+}
+
+@media (max-width: 750px) {
+	.light {
+		left: 35%;
+	}
+}
+
+@media (max-width: 650px) {
+	.light {
+		left: 30%;
+		box-shadow: 100px 100px 80px 100px #ffffff;
+	}
+}
+@media (max-width: 450px) {
+	.light {
+		left: 25%;
+		box-shadow: 100px 100px 80px 100px #ffffff;
+	}
+}
+
+button {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	width: 150px;
+	height: 40px;
+	background: #2c3e50;
+	font-weight: 700;
+	font-size: 18px;
+	border: 0;
+	color: #fff;
+	cursor: pointer;
+}
